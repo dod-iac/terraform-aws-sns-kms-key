@@ -23,3 +23,12 @@ variable "tags" {
     Automation = "Terraform"
   }
 }
+
+variable "allow_services" {
+  type        = list(string)
+  description = "The list of services that will be allowed kms GenerateDataKey and Decrypt IAM permissions."
+  default = [
+    "cloudwatch.amazonaws.com",
+    "events.amazonaws.com"
+  ]
+}

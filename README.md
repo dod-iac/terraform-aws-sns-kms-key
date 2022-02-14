@@ -1,4 +1,3 @@
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Usage
 
 Creates a KMS Key for use with SNS.
@@ -40,25 +39,11 @@ This project constitutes a work of the United States Government and is not subje
 |------|---------|
 | aws | ~> 3.0 |
 
-## Modules
-
-No Modules.
-
-## Resources
-
-| Name |
-|------|
-| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) |
-| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) |
-| [aws_kms_alias](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_alias) |
-| [aws_kms_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) |
-| [aws_partition](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition) |
-| [aws_region](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) |
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| allow\_services | The list of services that will be allowed kms GenerateDataKey and Decrypt IAM permissions. | `list(string)` | <pre>[<br>  "cloudwatch.amazonaws.com",<br>  "events.amazonaws.com"<br>]</pre> | no |
 | description | n/a | `string` | `"A KMS key used to encrypt SNS messages at-rest."` | no |
 | key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. | `string` | `30` | no |
 | name | The display name of the alias. The name must start with the word "alias" followed by a forward slash (alias/). | `string` | `"alias/sns"` | no |
@@ -71,4 +56,3 @@ No Modules.
 | aws\_kms\_alias\_arn | The Amazon Resource Name (ARN) of the key alias. |
 | aws\_kms\_alias\_name | The display name of the alias. |
 | aws\_kms\_key\_arn | The Amazon Resource Name (ARN) of the key. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
