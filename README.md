@@ -1,3 +1,4 @@
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Usage
 
 Creates a KMS Key for use with SNS.
@@ -39,6 +40,21 @@ This project constitutes a work of the United States Government and is not subje
 |------|---------|
 | aws | ~> 3.0 |
 
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [aws_kms_alias.sns](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_alias) | resource |
+| [aws_kms_key.sns](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) | resource |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [aws_iam_policy_document.sns](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_partition.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition) | data source |
+| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -56,3 +72,4 @@ This project constitutes a work of the United States Government and is not subje
 | aws\_kms\_alias\_arn | The Amazon Resource Name (ARN) of the key alias. |
 | aws\_kms\_alias\_name | The display name of the alias. |
 | aws\_kms\_key\_arn | The Amazon Resource Name (ARN) of the key. |
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
