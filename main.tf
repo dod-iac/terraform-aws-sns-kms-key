@@ -59,36 +59,21 @@ data "aws_iam_policy_document" "sns" {
     }
     resources = ["*"]
   }
+
   statement {
-    sid = "Allow CloudWatch"
+    sid = "Allow Services to Decrypt"
     actions = [
       "kms:GenerateDataKey*",
       "kms:Decrypt"
     ]
     effect = "Allow"
     principals {
-      type = "Service"
-      identifiers = [
-        "cloudwatch.amazonaws.com"
-      ]
+      type        = "Service"
+      identifiers = var.allow_services
     }
     resources = ["*"]
   }
-  statement {
-    sid = "Allow CloudWatch Events"
-    actions = [
-      "kms:GenerateDataKey*",
-      "kms:Decrypt"
-    ]
-    effect = "Allow"
-    principals {
-      type = "Service"
-      identifiers = [
-        "events.amazonaws.com"
-      ]
-    }
-    resources = ["*"]
-  }
+
   statement {
     sid = "Allow SNS"
     actions = [
@@ -104,6 +89,7 @@ data "aws_iam_policy_document" "sns" {
     }
     resources = ["*"]
   }
+
 }
 
 resource "aws_kms_key" "sns" {
