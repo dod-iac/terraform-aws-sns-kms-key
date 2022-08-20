@@ -19,7 +19,5 @@ variable "name" {
 variable "tags" {
   type        = map(string)
   description = "Tags applied to the KMS key."
-  default = {
-    Automation = "Terraform"
-  }
+  default     = {}
 }
