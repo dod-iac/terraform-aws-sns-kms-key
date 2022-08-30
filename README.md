@@ -59,9 +59,11 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_allow_image_builder"></a> [allow\_image\_builder](#input\_allow\_image\_builder) | Allow EC2 Image Builder to send messages to SNS topics encrypted with this key. | `bool` | `false` | no |
 | <a name="input_description"></a> [description](#input\_description) | n/a | `string` | `"A KMS key used to encrypt SNS messages at-rest."` | no |
 | <a name="input_key_deletion_window_in_days"></a> [key\_deletion\_window\_in\_days](#input\_key\_deletion\_window\_in\_days) | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. | `string` | `30` | no |
 | <a name="input_name"></a> [name](#input\_name) | The display name of the alias. The name must start with the word "alias" followed by a forward slash (alias/). | `string` | `"alias/sns"` | no |
+| <a name="input_services"></a> [services](#input\_services) | Services that can use this KMS key. | `list(string)` | <pre>[<br>  "cloudwatch.amazonaws.com",<br>  "events.amazonaws.com",<br>  "sns.amazonaws.com"<br>]</pre> | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags applied to the KMS key. | `map(string)` | `{}` | no |
 
 ## Outputs

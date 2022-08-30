@@ -59,51 +59,45 @@ data "aws_iam_policy_document" "sns" {
     }
     resources = ["*"]
   }
-  statement {
-    sid = "Allow CloudWatch"
-    actions = [
-      "kms:GenerateDataKey*",
-      "kms:Decrypt"
-    ]
-    effect = "Allow"
-    principals {
-      type = "Service"
-      identifiers = [
-        "cloudwatch.amazonaws.com"
+
+  dynamic "statement" {
+    for_each = length(var.services) > 0 ? [1] : []
+    content {
+      sid = "Allow services to use the key"
+      actions = [
+        "kms:GenerateDataKey",
+        "kms:Decrypt"
       ]
+      effect = "Allow"
+      principals {
+        type        = "Service"
+        identifiers = var.services
+      }
+      resources = ["*"]
     }
-    resources = ["*"]
   }
-  statement {
-    sid = "Allow CloudWatch Events"
-    actions = [
-      "kms:GenerateDataKey*",
-      "kms:Decrypt"
-    ]
-    effect = "Allow"
-    principals {
-      type = "Service"
-      identifiers = [
-        "events.amazonaws.com"
+
+  dynamic "statement" {
+    for_each = var.allow_image_builder ? [1] : []
+    content {
+      sid = "Allow EC2 Image Builder"
+      actions = [
+        "kms:GenerateDataKey",
+        "kms:Decrypt"
       ]
+      effect = "Allow"
+      principals {
+        type = "AWS"
+        identifiers = [format(
+          "arn:%s:iam::%s:role/aws-service-role/imagebuilder.amazonaws.com/AWSServiceRoleForImageBuilder",
+          data.aws_partition.current.partition,
+          data.aws_caller_identity.current.account_id
+        )]
+      }
+      resources = ["*"]
     }
-    resources = ["*"]
   }
-  statement {
-    sid = "Allow SNS"
-    actions = [
-      "kms:GenerateDataKey*",
-      "kms:Decrypt"
-    ]
-    effect = "Allow"
-    principals {
-      type = "Service"
-      identifiers = [
-        "sns.amazonaws.com"
-      ]
-    }
-    resources = ["*"]
-  }
+
 }
 
 resource "aws_kms_key" "sns" {
