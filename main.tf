@@ -65,7 +65,7 @@ data "aws_iam_policy_document" "sns" {
     content {
       sid = "Allow services to use the key"
       actions = [
-        "kms:GenerateDataKey",
+        "kms:GenerateDataKey*",
         "kms:Decrypt"
       ]
       effect = "Allow"
@@ -82,7 +82,7 @@ data "aws_iam_policy_document" "sns" {
     content {
       sid = "Allow EC2 Image Builder"
       actions = [
-        "kms:GenerateDataKey",
+        "kms:GenerateDataKey*",
         "kms:Decrypt"
       ]
       effect = "Allow"
